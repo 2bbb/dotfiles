@@ -1,5 +1,6 @@
 // ~/.npm-init.js
 
+const exec = require('child_process').execSync;
 const path = require('path');
 const fs = require('fs');
 
@@ -48,7 +49,6 @@ function writeFileIfNotExists(filepath, data) {
 }
 
 if(process.argv.indexOf('--ts') != -1) {
-    const exec = require('child_process').execSync;
     const newest_ts = exec('npm info typescript version').toString().trim();
     const node_ver = exec('node --version').toString().trim().replace(/^v/, '').replace(/\.[^\.]+\.[^\.]+$/, '.0.0');
     Object.assign(json, {
@@ -77,5 +77,7 @@ if(process.argv.indexOf('--ts') != -1) {
     });
     if(!fs.existsSync(path.join(cwd, 'index.js'))) fs.writeFileSync(path.join(cwd, 'index.js'), "");
 }
+
+exec(`cd ${cwd}; git init`);
 
 module.exports = json;
