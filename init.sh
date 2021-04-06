@@ -36,7 +36,7 @@ function symlink() {
         echo "  ${HOME}/$1 is exist [symlink]"
     else
         echo "  symbloic link to ${HOME}/$1"
-        # ln -sf ${DOTFILES_DIR}/$1 ${HOME}/$1
+        ln -sf ${DOTFILES_DIR}/$1 ${HOME}/$1
     fi
 }
 
@@ -46,7 +46,7 @@ function copyfile() {
         echo "  ${HOME}/$1 is exist"
     else
         echo "  copyfile to ${HOME}/$1"
-        # cp ${DOTFILES_DIR}/$1 ${HOME}/$1
+        cp ${DOTFILES_DIR}/$1 ${HOME}/$1
     fi
 }
 
@@ -70,7 +70,3 @@ do
     #     echo "* * ${FILE} is ignored"
     fi
 done
-
-# symlink .vimrc
-# symlink Brewfile
-# copyfile .npm-init.js
